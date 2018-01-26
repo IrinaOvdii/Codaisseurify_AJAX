@@ -1,0 +1,22 @@
+<p>
+  <h1 class="main-banner">Name of the artist:</h1>
+  <h1><%= @artist.name %></h1>
+  <%= link_to "Delete artist", artist_path(@artist.id), method: :delete, data: {confirm: "Are you sure?"}, class: "button" %>
+</p>
+
+<h2>List of Songs:</h2>
+
+<% if @artist.songs.any? %>
+  <ul>
+    <% @artist.songs.each do |song| %>
+      <li class="song_name"><%= song.name %></li>
+      <%= link_to "Delete song", url_for([@artist, song]), method: :delete, data: {confirm: "Are you sure?"}, class: "button" %>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no song belongs to this artist!</p>
+<% end %>
+
+<hr>
+
+<%= link_to "Add New Song", new_artist_song_path(@artist), class: "button" %>

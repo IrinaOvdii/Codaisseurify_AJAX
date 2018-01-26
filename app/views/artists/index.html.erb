@@ -1,0 +1,19 @@
+<h1 class="main-banner">Artists:</h1>
+
+<ul>
+<% @artists.each do |artist| %>
+  <li>
+    <h1><strong><%= link_to artist.name, artist_path(artist.id) %></strong></h1>
+
+  <h4>Photo:</h4>
+    <% artist.photos.each do |photo| %>
+    <%= image_tag photo.image.thumbnail, class: "img" %>
+    <p><%= link_to "Add photo", edit_artist_path(artist), class: "button" %></p>
+    <p><%= link_to "Delete photo", photo_path( photo.id ), class: "button",
+    method: :delete, data: { confirm: "Are you sure?" } %></p>
+    <hr>
+    <% end %>
+
+  </li>
+<% end %>
+</ul>
