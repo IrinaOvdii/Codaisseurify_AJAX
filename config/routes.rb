@@ -13,4 +13,5 @@ Rails.application.routes.draw do
       end
         resources :photos, only: [:destroy]
     end
+
   end
