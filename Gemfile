@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootstrap', '~> 4.0.0'
 gem 'cloudinary', '1.2.3'
 gem 'carrierwave', '0.11.2'

@@ -2,7 +2,7 @@ class SongsController < ApplicationController
   before_action :set_artist
 
   def show
-     @song = artist.songs.find(params[:artist_id])
+     @song = @artist.songs.find(params[:artist_id])
   end
 
   def new
