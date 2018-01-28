@@ -23,10 +23,16 @@
 <h1> Add Song for <%= link_to @artist.name, @artist %>:</h1>
 
   <%= form_for ([@artist, @artist.songs.build]) do |f| %>
+    <ul>
+      <% @song.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+
     <%= f.label :name %>
     <%= f.text_field :name %>
 
-    <%= f.submit "Create" %>
+    <%= f.submit "Create", type: 'button', id: :add_song %>
   <% end %>
 
 </div>
