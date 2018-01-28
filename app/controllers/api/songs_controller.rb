@@ -46,7 +46,6 @@ class Api::SongsController < ApplicationController
     render status: 200, json: {
       message: "Song Deleted!"
     }.to_json
-    format.html { redirect_to @artist, notice: "Song Deleted!" }
   end
 
 
