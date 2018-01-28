@@ -1,6 +1,11 @@
 class SongsController < ApplicationController
   before_action :set_artist
 
+  def index
+    @songs = Song.all
+    @song = Song.new
+  end
+
   def show
      @song = @artist.songs.find(params[:artist_id])
   end

@@ -7,10 +7,10 @@
 <h2>List of Songs:</h2>
 
 <% if @artist.songs.any? %>
-  <ul>
+  <ul id="songList">
     <% @artist.songs.each do |song| %>
       <li class="song_name"><%= song.name %></li>
-      <%= link_to "Delete song", url_for([@artist, song]), method: :delete, data: {confirm: "Are you sure?"}, class: "button" %>
+      <div id="delete-song-<%= song.id %>" ><%= link_to "Delete song", url_for([@artist, song]), method: :delete, data: {confirm: "Are you sure?"}, class: "button" %></div>
     <% end %>
   </ul>
 <% else %>
@@ -19,4 +19,14 @@
 
 <hr>
 
-<%= link_to "Add New Song", new_artist_song_path(@artist), class: "button" %>
+<div id="add-song-wrapper">
+<h1> Add Song for <%= link_to @artist.name, @artist %>:</h1>
+
+  <%= form_for ([@artist, @artist.songs.build]) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.submit "Create" %>
+  <% end %>
+
+</div>
