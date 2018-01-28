@@ -4,6 +4,8 @@
   <%= link_to "Delete artist", artist_path(@artist.id), method: :delete, data: {confirm: "Are you sure?"}, class: "button" %>
 </p>
 
+
+<!-- LIST OF SONGS -->
 <h2>List of Songs:</h2>
 
 <% if @artist.songs.any? %>
@@ -19,20 +21,17 @@
 
 <hr>
 
+<!-- FORM -->
 <div id="add-song-wrapper">
 <h1> Add Song for <%= link_to @artist.name, @artist %>:</h1>
 
   <%= form_for ([@artist, @artist.songs.build]) do |f| %>
-    <ul>
-      <% @song.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
 
     <%= f.label :name %>
     <%= f.text_field :name %>
+    <%= f.hidden_field :artist_id, value: @artist.id %>
 
-    <%= f.submit "Create", type: 'button', id: :add_song %>
+    <%= f.submit "Create" %>
   <% end %>
 
 </div>
