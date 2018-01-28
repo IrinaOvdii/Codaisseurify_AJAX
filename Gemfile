@@ -40,8 +40,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
+  gem 'rspec-rails'
+  gem 'capybara'
   gem 'selenium-webdriver'
+  gem "chromedriver-helper"
   gem 'factory_bot_rails'
   gem 'faker'
 end
@@ -60,5 +62,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'capybara', '~> 2.9', '>= 2.9.1'
+  gem 'database_cleaner'
 end
