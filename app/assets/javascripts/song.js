@@ -1,6 +1,3 @@
-function nextSongId() {
-  return $(".song_name").length + 1;
-};
 
 function createSong(song_artist_id, name) {
   var newSong = {name: name};
@@ -20,12 +17,12 @@ function createSong(song_artist_id, name) {
   .done(function(data){
     console.log(data);
 
+    var songId = data.song.id;
+
     var label = $('<label></label>')
     .attr('for', songId)
     .html(name);
-
-    var destroySong = $('<input type="button" value="Delete song" onClick="deleteSong()" id="delete-song" class="button" rel="nofollow">');
-    var songId = "song-" + nextSongId();
+    var destroySong = $('<input type="button" value="Delete song" onClick="deleteSong('+song_artist_id + ', ' + songId +')" id="delete-song" class="button" rel="nofollow">');
     var Item = $('<li class="song_name"></li>');
     Item.attr('id', songId);
     Item.append(label).append(destroySong);
@@ -40,14 +37,21 @@ function submitSong(event) {
    $("#song_name").val(null);
 }
 
-
-function deleteSong(event) {
-  event.preventDefault();
-  var button = this;
-  $(button).parent().remove();
+function deleteSong(song_artist_id, songId) {
+  $.ajax({
+    type: "DELETE",
+    url: "/api/artists/" + song_artist_id + "/songs/" + songId,
+    contentType: "application/json",
+    dataType: "json"
+  })
+  .fail(function(error) {
+    console.log(error);
+  })
+  .done(function(data){
+    $("#"+songId).remove();
+  })
 }
-
-document.addEventListener("turbolinks:load", function() {
+  $( document ).ready(function() {
   $("form").bind('submit', submitSong);
-  $("input[type=button]").bind('click', deleteSong)
+  //$("#delete-song").bind('click', deleteSong)
 });
