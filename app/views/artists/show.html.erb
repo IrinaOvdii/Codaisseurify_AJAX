@@ -31,7 +31,8 @@
     <%= f.text_field :name %>
     <%= f.hidden_field :artist_id, value: @artist.id %>
 
-    <%= f.submit "Create", id: "delete-song", data: { disable_with: false } %>
+    <%= f.submit "Create", data: { disable_with: false } %>
+    <div><button id="delete-songs" >Delete all songs</button></div>
   <% end %>
 
 </div>
