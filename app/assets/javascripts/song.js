@@ -51,7 +51,23 @@ function deleteSong(song_artist_id, songId) {
     $("#"+songId).remove();
   })
 }
+function deleteAllSongs(event) {
+ event.preventDefault();
+ let artist_id = $("#song_artist_id").val();
+ $.ajax({
+   type: "DELETE",
+   url: "/api/artists/" + artist_id + "/songs/delete_all" ,
+   contentType: "application/json",
+   dataType: "json"
+ })
+ .fail(function(error) {
+   console.log(error);
+ })
+ .done(function(data){
+   $('#songList').empty();
+ })
+}
   $( document ).ready(function() {
   $("form").bind('submit', submitSong);
-  //$("#delete-song").bind('click', deleteSong)
+  $("#delete-songs").bind('click', deleteAllSongs)
 });
